@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import { Colors } from "../constants/Colors";
+import { BooksProvider } from "../contexts/BooksContext";
 import { UserProvider } from "../contexts/UserContext";
 // slot content in layout file 
 
@@ -14,6 +15,7 @@ const RootLayout = () => {
 
     return (
         <UserProvider>
+            <BooksProvider>
         <StatusBar style = 'auto'/>
         <Stack screenOptions={{ 
             headerTintColor: theme.title,
@@ -38,6 +40,7 @@ const RootLayout = () => {
                 title: 'Home',
             }} /> 
     </Stack>
+    </BooksProvider>
     </UserProvider>
     )
 }
