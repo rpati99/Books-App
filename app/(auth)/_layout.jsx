@@ -1,7 +1,6 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native'
-import React from 'react'
-import { Slot, Stack } from 'expo-router'
+import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+import GuestOnly from '../../components/auth/GuestOnly'
 // slot content in layout file 
 
 // screenOptions set globally for all screens inside stack
@@ -10,25 +9,14 @@ import { StatusBar } from 'expo-status-bar'
 const AuthLayout = () => {
 
     return (
-        <>
+        <GuestOnly>
         <StatusBar value = 'auto'/>
         <Stack screenOptions={{ 
             headerShown: false,
             animation: 'none'
         }}>
-             <Stack.Screen
-            name='login'
-            options = {{
-                title: 'Login',
-            }} />
-        <Stack.Screen
-            name='register'
-            options = {{
-                title: 'Register',
-                // headerShown: false,
-            }} />
     </Stack>
-    </>
+    </GuestOnly>
     )
 }
 

@@ -1,19 +1,20 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native'
-import { Stack } from 'expo-router'
-import { Colors } from "../constants/Colors"
-import { StatusBar } from 'expo-status-bar'
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { useColorScheme } from "react-native";
+import { Colors } from "../constants/Colors";
+import { UserProvider } from "../contexts/UserContext";
 // slot content in layout file 
 
 // screenOptions set globally for all screens inside stack
 // override them by adding same option to separate screen
 // usecolorscheme is a hook
 const RootLayout = () => {
-    const colorScheme = useColorScheme(); 
-    const theme = Colors[colorScheme] ?? Colors.light;
+    const scheme = useColorScheme() ?? "light";   // 'light' | 'dark' | null
+    const theme = Colors[scheme];
 
     return (
-        <>
-        <StatusBar value = 'auto'/>
+        <UserProvider>
+        <StatusBar style = 'auto'/>
         <Stack screenOptions={{ 
             headerTintColor: theme.title,
             headerStyle: { 
@@ -37,7 +38,7 @@ const RootLayout = () => {
                 title: 'Home',
             }} /> 
     </Stack>
-    </>
+    </UserProvider>
     )
 }
 
